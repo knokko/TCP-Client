@@ -67,9 +67,11 @@ public abstract class TCPClientSocket<State> implements Runnable {
 	public void close(String reason) {
 		System.out.println("Stopping client socket because: " + reason);
 		stopping = true;
-		try {
-			socket.close();
-		} catch (IOException ioex) {
+		if (socket != null) {
+			try {
+				socket.close();
+			} catch (IOException ioex) {
+			}
 		}
 	}
 
